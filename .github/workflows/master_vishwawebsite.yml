@@ -19,14 +19,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: '8'
-
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: mvn clean install -DskipTests --file pom.xml
-
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v2
       with:
-        app-name: 'vishwawebsite'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3c39a7301d7a4f19a1db1c403cc29a0c }}
-        package: '${{ github.workspace }}/target/*.war'
+        name: Package
+        path: staging
