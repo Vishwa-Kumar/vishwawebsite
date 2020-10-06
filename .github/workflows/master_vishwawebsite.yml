@@ -7,6 +7,13 @@ on:
   push:
     branches:
       - master
+      
+env:
+  AZURE_WEBAPP_NAME: VISHWAWEBSITE  # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }} # set this to the path to your web app project
+  JAVA_VERSION: '1.8'                # set this to the node version to use
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}     # set GH repo secret with the publish profile of the web app
+
 
 jobs:
   build-and-deploy:
@@ -26,6 +33,11 @@ jobs:
       with:
         path: staging
         
+    - name: Login via Az module
+      uses: azure/login@v1.1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+        enable-AzPSSession: true         
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
