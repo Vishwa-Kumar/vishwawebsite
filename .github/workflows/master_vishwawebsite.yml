@@ -29,4 +29,4 @@ jobs:
         app-name: 'vishwawebsite'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_c1cd8b7cdd334ae1ad51c112a061e549 }}
-        package: '${{ github.workspace }}/target/*.war'
+        package: '${{ github.workspace }}/target/ROOT.war'
