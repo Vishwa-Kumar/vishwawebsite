@@ -5,10 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vishwa.model.ClientDetails;
 import com.vishwa.service.EmailService;
 
 @Controller
@@ -21,12 +24,22 @@ public class FrontController {
 	@Autowired
     private EmailService emailService;
 
-	@RequestMapping("/sendmail")
-    public String sendmail() {
-		System.out.println("send mail called");
-        emailService.sendMail("viskumdee@gmail.com", "Test Subject", "Test mail");
-
-        return "emailsent";
+	
+	@RequestMapping(value = "/sendmail", method = RequestMethod.POST,consumes = "application/json")
+	
+    public String  sendmail(@RequestBody ClientDetails clientDetails) {
+		
+		 ObjectMapper Obj = new ObjectMapper(); 
+		System.out.println("send mail called "+clientDetails.toString());
+		try {
+			 emailService.sendMail("viskumdee@gmail.com", "visitor of vishwakumardeepak.com", Obj.writeValueAsString(clientDetails));
+		}
+		catch(Exception e)
+		{
+			System.out.println("sendMail failed"+e.getLocalizedMessage());
+			
+		}
+      return "true";
     }
 
 	@RequestMapping("/")
