@@ -181,6 +181,10 @@ $( document ).ready(function() {
 										href="https://www.instagram.com/vishwa_kumar/" class="icon">
 										<i class="fab fa-instagram"></i>
 									</a>
+									</a> <a target="_blank"
+										href="https://youtube.com/channel/UCQPPJ7MptfP9rgKjUoyK6wA" class="icon">
+										<i class="fab fa-youtube"></i>
+									</a>
 									<!-- <a href="#0" class="icon">
                                             <i class="fas fa-basketball-ball"></i>
                                         </a> -->
