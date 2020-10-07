@@ -10,8 +10,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 		<meta name="keywords" content="HTML5 Template Stark onepage themeforest" />
-		<meta name="description" content="Stark - Onepage Multi-Purpose HTML5 Template" />
-		<meta name="author" content="" />
+		<meta name="description" content="Vishwa Kumar Deepak Website" />
+		<meta name="author" content="Vishwa" />
 
 		<!-- Title  -->
 		<title>Vishwa</title>
@@ -56,7 +56,7 @@
     	<nav class="pages-nav">
             <div class="logo">
                 <a href="#0">
-                    <img src="img/logo.png" alt="">
+                    V<!-- <img src="img/logo.png" alt=""> -->
                 </a>
             </div>
             <div class="pages-nav__item nav__list-item"><a class="link link--page hover-target" href="#page-home">Home</a></div>
