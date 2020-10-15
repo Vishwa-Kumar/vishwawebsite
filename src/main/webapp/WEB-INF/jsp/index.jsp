@@ -10,8 +10,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<meta name="keywords" content="Vishwa Website" />
-<meta name="description" content="Vishwa Kumar Deepak Website which contains showcase of his work and blogs" />
+<meta name="keywords" content="Vishwa Kumar Deepak" />
+<meta name="description" content="Vishwa Kumar Deepak Website, which contains showcase of his work and blogs" />
 <meta name="author" content="Vishwa" />
 <title>Vishwa Kumar Deepak</title>
 <link rel="shortcut icon" href="img/favicon.png" />
@@ -59,7 +59,7 @@ $( document ).ready(function() {
    
 		 $.ajax({
              type: "POST",
-             url: "http://localhost:8080/sendmail",
+             url: "http://vishwakumardeepak.com/sendmail",
              contentType: "application/json",
              data : JSON.stringify(input),
      		 dataType : 'json',		
