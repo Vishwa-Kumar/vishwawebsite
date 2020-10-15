@@ -16,10 +16,44 @@ public class ClientDetails {
 	String as;
 	String org;
 	String query;
+	String id;
+	String visitorId;
+
+	public ClientDetails() {
+
+		setId(new java.util.Date().toString());
+		visitorId=id;
+	}
+
+
+
+	public String getVisitorId() {
+		return visitorId;
+	}
+
+
+
+	public void setVisitorId(String visitorId) {
+		this.visitorId = visitorId;
+	}
+
+
 
 	public String getStatus() {
 		return status;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 
 	public void setStatus(String status) {
 		this.status = status;
@@ -28,6 +62,17 @@ public class ClientDetails {
 	public String getCountry() {
 		return country;
 	}
+
+	
+	@Override
+	public String toString() {
+		return "ClientDetails [status=" + status + ", country=" + country + ", countryCode=" + countryCode + ", region="
+				+ region + ", regionName=" + regionName + ", city=" + city + ", zip=" + zip + ", lat=" + lat + ", lon="
+				+ lon + ", timezone=" + timezone + ", isp=" + isp + ", as=" + as + ", org=" + org + ", query=" + query
+				+ ", id=" + id + ", visitorId=" + visitorId + "]";
+	}
+
+
 
 	public void setCountry(String country) {
 		this.country = country;
@@ -129,12 +174,5 @@ public class ClientDetails {
 		this.query = query;
 	}
 
-	@Override
-	public String toString() {
-		return "ClientDetails [status=" + status + ", country=" + country + ", countryCode=" + countryCode + ", region="
-				+ region + ", regionName=" + regionName + ", city=" + city + ", zip=" + zip + ", lat=" + lat + ", lon="
-				+ lon + ", timezone=" + timezone + ", isp=" + isp + ", as=" + as + ", org=" + org + ", query=" + query
-				+ "]";
-	}
-
+	
 }

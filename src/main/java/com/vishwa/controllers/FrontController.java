@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vishwa.dao.DocDbDao;
 import com.vishwa.model.ClientDetails;
 import com.vishwa.service.EmailService;
 
@@ -19,28 +20,34 @@ public class FrontController {
 
 	public String uname = "";
 	public String password = "";
-	
-	
-	@Autowired
-    private EmailService emailService;
 
-	
-	@RequestMapping(value = "/sendmail", method = RequestMethod.POST,consumes = "application/json")
-	
-    public String  sendmail(@RequestBody ClientDetails clientDetails) {
-		
-		 ObjectMapper Obj = new ObjectMapper(); 
-		System.out.println("send mail called "+clientDetails.toString());
+	@Autowired
+	private EmailService emailService;
+
+	private DocDbDao docDbDao = new DocDbDao();
+
+	@RequestMapping(value = "/sendmail", method = RequestMethod.POST, consumes = "application/json")
+
+	public String sendmail(@RequestBody ClientDetails clientDetails) {
+
+		ObjectMapper Obj = new ObjectMapper();
+		System.out.println("send mail called " + clientDetails.toString());
 		try {
-			 emailService.sendMail("viskumdee@gmail.com", "visitor of vishwakumardeepak.com", Obj.writeValueAsString(clientDetails));
+			emailService.sendMail("viskumdee@gmail.com", "visitor of vishwakumardeepak.com",
+					Obj.writeValueAsString(clientDetails));
+			try {
+				docDbDao.createTodoItem(clientDetails);
+			} catch (Exception e1) {
+				System.out.println("not able to save to db" + e1.getLocalizedMessage());
+			}
 		}
-		catch(Exception e)
-		{
-			System.out.println("sendMail failed"+e.getLocalizedMessage());
-			
+
+		catch (Exception e) {
+			System.out.println("sendMail failed" + e.getLocalizedMessage());
+
 		}
-      return "true";
-    }
+		return "true";
+	}
 
 	@RequestMapping("/")
 	String login(Model model) {
@@ -54,8 +61,6 @@ public class FrontController {
 
 		return "home";
 	}
-
-	
 
 	@RequestMapping("/logout")
 	String logout() {
