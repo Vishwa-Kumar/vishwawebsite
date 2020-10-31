@@ -8,10 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vishwa.dao.DocDbDao;
 import com.vishwa.model.ClientDetails;
 import com.vishwa.service.EmailService;
 
@@ -24,7 +22,7 @@ public class FrontController {
 	@Autowired
 	private EmailService emailService;
 
-	private DocDbDao docDbDao = new DocDbDao();
+	
 
 	@RequestMapping(value = "/sendmail", method = RequestMethod.POST, consumes = "application/json")
 
@@ -36,7 +34,7 @@ public class FrontController {
 			emailService.sendMail("viskumdee@gmail.com", "visitor of vishwakumardeepak.com",
 					Obj.writeValueAsString(clientDetails));
 			try {
-				docDbDao.createTodoItem(clientDetails);
+				//docDbDao.createTodoItem(clientDetails);
 			} catch (Exception e1) {
 				System.out.println("not able to save to db" + e1.getLocalizedMessage());
 			}
@@ -56,10 +54,11 @@ public class FrontController {
 		return "index";
 	}
 
-	@RequestMapping("/hi")
-	String welcome(@RequestParam String username, @RequestParam String pass) {
+	@RequestMapping("/p")
+	String welcome(Model model) {
 
-		return "home";
+		System.out.println();
+		return "proposal";
 	}
 
 	@RequestMapping("/logout")

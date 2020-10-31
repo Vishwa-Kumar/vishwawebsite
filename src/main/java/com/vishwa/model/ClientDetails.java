@@ -1,7 +1,13 @@
 package com.vishwa.model;
 
-public class ClientDetails {
+import java.io.Serializable;
 
+public class ClientDetails implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String status;
 	String country;
 	String countryCode;
