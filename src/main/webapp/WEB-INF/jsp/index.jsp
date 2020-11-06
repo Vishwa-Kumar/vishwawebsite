@@ -59,7 +59,7 @@ $( document ).ready(function() {
    
 		 $.ajax({
              type: "POST",
-             url: "http://localhost:8080/sendmail",
+             url: "http://vishwakumardeepak.com/sendmail",
              contentType: "application/json",
              data : JSON.stringify(input),
      		 dataType : 'json',		
