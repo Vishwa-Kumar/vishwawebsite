@@ -11,7 +11,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta name="keywords" content="Vishwa Kumar Deepak" />
-<meta name="description" content="Vishwa Kumar Deepak Website, which contains showcase of his work and blogs" />
+<meta name="description"
+	content="Vishwa Kumar Deepak Website, which contains showcase of his work and blogs" />
 <meta name="author" content="Vishwa" />
 <title>Vishwa Kumar Deepak</title>
 <link rel="shortcut icon" href="img/favicon.png" />
@@ -33,59 +34,63 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-$( document ).ready(function() {
-	
-	$.getJSON('http://ip-api.com/json?callback=?', function(data) {
-		  console.log(JSON.stringify(data, null, 2));
-		  sendMail(data);
-		});
-    console.log( "ready!" );
-    var day = new Date();
-    var wish="Hi";
-    var hr = day.getHours();
-    if (hr >= 0 && hr < 12) {
-    	wish="Good Morning !";
-    } else if (hr == 12) {
-    	wish="Good Noon!";
-    } else if (hr >= 12 && hr <= 17) {
-    	wish="Good AferNoon !";
-    } else {
-    	wish="Good Evening !";
-    }
-   $('.wish').text(wish+" ");
-   
-   
-   function sendMail(input) {
-   
-		 $.ajax({
-             type: "POST",
-             url: "http://vishwakumardeepak.com/sendmail",
-             contentType: "application/json",
-             data : JSON.stringify(input),
-     		 dataType : 'json',		
-             success: function (data_response) {
-             	console.log("success data_response"+data_response)
-                /*  $( "#loader").hide();
-                 $( "#success").slideDown( "slow" ); */
-                 setTimeout(function() {
-                 $( "#success").slideUp( "slow" );
-                 }, 3000);
-             },
-             error: function(data_response) {
-             	console.log("error data_response"+JSON.stringify(data_response))
-                /*  $( "#loader").hide();
-                 $( "#error").slideDown( "slow" ); */
-                 setTimeout(function() {
-                 $( "#error").slideUp( "slow" );
-                 }, 3000);
-             }
-         });
-   }
-   
-});
+	$(document).ready(
+			function() {
 
+				$.getJSON('http://ip-api.com/json?callback=?', function(data) {
+					console.log(JSON.stringify(data, null, 2));
+					sendMail(data);
+				});
+				console.log("ready!");
+				var day = new Date();
+				var wish = "Hi";
+				var hr = day.getHours();
+				if (hr >= 0 && hr < 12) {
+					wish = "Good Morning !";
+				} else if (hr == 12) {
+					wish = "Good Noon!";
+				} else if (hr >= 12 && hr <= 17) {
+					wish = "Good AferNoon !";
+				} else {
+					wish = "Good Evening !";
+				}
+				$('.wish').text(wish + " ");
 
+				function sendMail(input) {
 
+					$
+							.ajax({
+								type : "POST",
+								/*   url: "http://vishwakumardeepak.com/sendmail", */
+								url : "http://localhost:8080/sendmail",
+								contentType : "application/json",
+								data : JSON.stringify(input),
+								dataType : 'json',
+								success : function(data_response) {
+
+									console.log("success data_response"
+											+ JSON.stringify(data_response));
+									$("#visitorCount").text(
+											data_response["errorCode"]);
+									/*  $( "#loader").hide();
+									 $( "#success").slideDown( "slow" ); */
+									setTimeout(function() {
+										$("#success").slideUp("slow");
+									}, 3000);
+								},
+								error : function(data_response) {
+									alert("error data_response"
+											+ JSON.stringify(data_response))
+									/*  $( "#loader").hide();
+									 $( "#error").slideDown( "slow" ); */
+									setTimeout(function() {
+										$("#error").slideUp("slow");
+									}, 3000);
+								}
+							});
+				}
+
+			});
 </script>
 
 </head>
@@ -121,8 +126,10 @@ $( document ).ready(function() {
 		<div class="pages-nav__item nav__list-item">
 			<a class="link link--page hover-target" href="#page-about">About</a>
 		</div>
-		<!--             <div class="pages-nav__item nav__list-item"><a class="link link--page hover-target" href="#page-resume">Resume</a></div>
-            <div class="pages-nav__item nav__list-item"><a class="link link--page hover-target" href="#page-work">Portfolio</a></div> -->
+		<div class="pages-nav__item nav__list-item">
+			<a class="link link--page hover-target" href="#page-resume">Resume</a>
+		</div>
+		<!-- <div class="pages-nav__item nav__list-item"><a class="link link--page hover-target" href="#page-work">Portfolio</a></div> -->
 		<div class="pages-nav__item nav__list-item">
 			<a class="link link--page hover-target" href="#page-blog">Blog</a>
 		</div>
@@ -180,10 +187,9 @@ $( document ).ready(function() {
 									</a> <a target="_blank"
 										href="https://www.instagram.com/vishwa_kumar/" class="icon">
 										<i class="fab fa-instagram"></i>
-									</a>
-									</a> <a target="_blank"
-										href="https://youtube.com/channel/UCQPPJ7MptfP9rgKjUoyK6wA" class="icon">
-										<i class="fab fa-youtube"></i>
+									</a> </a> <a target="_blank"
+										href="https://youtube.com/channel/UCQPPJ7MptfP9rgKjUoyK6wA"
+										class="icon"> <i class="fab fa-youtube"></i>
 									</a>
 									<!-- <a href="#0" class="icon">
                                             <i class="fas fa-basketball-ball"></i>
@@ -264,50 +270,71 @@ $( document ).ready(function() {
 								</div>
 							</div>
 
-							<!--       <div class="services mt-80">
-                                    <div class="sub-head mb-50">
-                                        <h5>What <span>I Do</span> ?</h5>
-                                    </div>
+							<div class="services mt-80">
+								<div class="sub-head mb-50">
+									<h5>
+										What <span>I Do</span> ?
+									</h5>
+								</div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="item">
-                                                <span class="icon ti-palette"></span>
-                                                <div class="cont">
-                                                    <h6>Web Design</h6>
-                                                    <p>Lorem ipsum consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit Maecenas in pulvinar neque.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="item">
-                                                <span class="icon ti-desktop"></span>
-                                                <div class="cont">
-                                                    <h6>Web Development</h6>
-                                                    <p>Lorem ipsum consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit Maecenas in pulvinar neque.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="item">
-                                                <span class="icon ti-shield"></span>
-                                                <div class="cont">
-                                                    <h6>Branding</h6>
-                                                    <p>Lorem ipsum consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit Maecenas in pulvinar neque.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="item">
-                                                <span class="icon ti-stats-up"></span>
-                                                <div class="cont">
-                                                    <h6>Marketing</h6>
-                                                    <p>Lorem ipsum consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit Maecenas in pulvinar neque.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+								<div class="row">
+									<div class="col-md-6">
+										<div class="item">
+											<span class="icon ti-desktop"></span>
+											<div class="cont">
+												<h6>Software Engineering</h6>
+												<p>Professionally, I am Software Engineer, working
+													presently with Microsoft in making windows operating system
+													more productive and secure which is running on billion of
+													devices around the globe.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="item">
+											<span class="icon ti-palette"></span>&nbsp;<span
+												class="icon ti-desktop"></span>
+											<div class="cont">
+												<h6>Web Design & Development</h6>
+												<p>Web interest me a lot, the way web is changing out
+													lives making it feasible to get things done with a click is
+													remarkable</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="item">
+											<span class="icon ti-shield"></span>
+											<div class="cont">
+												<h6>Trave & Food</h6>
+												<p>
+													When I am not working, I might be travelling or thinking
+													about travelling or Food.<br> My <a
+														href="https://www.instagram.com/vishwa_kumar"
+														target="_blank">instagram</a> is more evident of this
+													fact.
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="item">
+											<span class="icon ti-pencil"></span>
+											<div class="cont">
+												<h6>Blog/Vlog</h6>
+												<p>
+													I so wanted to create technical blogs and travel vlogs, but
+													somehow its not getting done.<br> But I am very much
+													sure its going to be there soon. Please subscribe to be
+													updated.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
 							<!--   <div class="price mt-50">
                                     <div class="sub-head mb-50">
@@ -427,7 +454,7 @@ $( document ).ready(function() {
 										<div class="col-md-12 col-sm-12">
 											<div class="item text-center mb-sm30">
 												<span class="icon ti-heart"></span>
-												<h4 class="count">368</h4>
+												<h4 class="count" id="visitorCount">..</h4>
 												<p>You are visitor number</p>
 											</div>
 										</div>
@@ -470,9 +497,9 @@ $( document ).ready(function() {
 
 							<div class="section-head">
 								<h5>
-									<span>R</span>esume
+								<a href="https://docs.google.com/document/d/1UhOzvWJq2NgnIwoH39frLTkwYajW3a_M6d3PKwDs2w4/edit?usp=sharing" target="_blank">	<span>R</span>esume </a>
 								</h5>
-								<h3>Resume</h3>
+								
 							</div>
 
 							<div class="clmn">
@@ -487,39 +514,70 @@ $( document ).ready(function() {
 									<div>
 										<div class="row">
 											<div class="col-md-5 col-sm-3">
-												<span class="date">2016 - <b>Current</b></span>
+												<span class="date">2019 - <b>Current</b></span>
 											</div>
 											<div class="col-md-7 col-sm-9 right">
-												<h6>Working as Art Director</h6>
-												<h4>Lead Ui/Ux Designer</h4>
-												<p>All the Lorem Ipsum on the Internet tend to repeat
-													chunks as necessary, making this on the Internet generator.</p>
+												<h6>Software Engineer 2</h6>
+												<h4>Microsoft IDC, Hyderabad</h4>
+												<p>Keeping billions of devices running on the Windows
+													operating system up to date and secure. This is the first
+													time I am exploring system-level programming in C++</p>
 											</div>
 										</div>
 									</div>
 									<div>
 										<div class="row">
 											<div class="col-md-5 col-sm-3">
-												<span class="date">2014 - <b>2016</b></span>
+												<span class="date">2018 - <b>2019</b></span>
 											</div>
 											<div class="col-md-7 col-sm-9 right">
-												<h6>Working as Art Director</h6>
-												<h4>Senior Ui/Ux Designer</h4>
-												<p>All the Lorem Ipsum on the Internet tend to repeat
-													chunks as necessary, making this on the Internet generator.</p>
+												<h6>Developer - Technology</h6>
+												<h4>Delhivery, Hyderabad</h4>
+												<p>
+													Developing Delhivery mid-mile/line haul system using
+													event-driven architecture and event sourcing which will
+													optimize its operations in terms of cost, time and best
+													utilization of resources.<br> This project is based on
+													a microservice architecture with 9 components out of which
+													I have full ownership of four components starting from
+													designing, development, enhancement, and support.<br>
+													Tech Stack: Java, Apache Kafka, AWS Dynamo DB, AWS Kinesis,
+													AWS SQS, Gradle, Redis, AWS Lambda, Python, RabbitMQ,
+													Celery, Postgres DB, Elastic Search, sentry, supervisor,
+													Nginx, Angular, Linux, etc
+												</p>
 											</div>
 										</div>
 									</div>
 									<div>
 										<div class="row">
 											<div class="col-md-5 col-sm-3">
-												<span class="date">2012 - <b>2014</b></span>
+												<span class="date">2017 - <b>2018</b></span>
 											</div>
 											<div class="col-md-7 col-sm-9 right">
-												<h6>Working as Art Director</h6>
-												<h4>Junior Front-End</h4>
-												<p>All the Lorem Ipsum on the Internet tend to repeat
-													chunks as necessary, making this on the Internet generator.</p>
+												<h6>Software Developer Engineer</h6>
+												<h4>Kony</h4>
+												<p>
+													Product Development<br> Role and Responsibility: To
+													develop services for admin console application which
+													configures the product, services, roles, permissions etc to
+													Kony Retail Banking Application
+												</p>
+											</div>
+										</div>
+									</div>
+									<div>
+										<div class="row">
+											<div class="col-md-5 col-sm-3">
+												<span class="date">2014 - <b>2017</b></span>
+											</div>
+											<div class="col-md-7 col-sm-9 right">
+												<h6>System Engineer</h6>
+												<h4>TCS</h4>
+												<p>Application Development<br> Developed Tata Docomo
+													Recharge and postpaid bill payment application,
+													specifically payment integration module with BillDesk which
+													enable fast and smooth revenue collection for Tata Docomo.</p>
 											</div>
 										</div>
 									</div>
@@ -539,18 +597,17 @@ $( document ).ready(function() {
 									<div>
 										<div class="row">
 											<div class="col-md-5 col-sm-3">
-												<span class="date">2010 - <b>2012</b></span>
+												<span class="date">2010 - <b>2014</b></span>
 											</div>
 											<div class="col-md-7 col-sm-9 right">
-												<h6>at Playground Design</h6>
-												<h4>ABC University</h4>
-												<p>All the Lorem Ipsum on the Internet tend to repeat
-													chunks as necessary, making this on the Internet generator.</p>
+												<h6>B.Tech in Computer Science & Engineering</h6>
+												<h4>KIIT University</h4>
+												<p>CGPA : 7.41</p>
 											</div>
 										</div>
 									</div>
 									<div>
-										<div class="row">
+									<!-- 	<div class="row">
 											<div class="col-md-5 col-sm-3">
 												<span class="date">2008 - <b>2010</b></span>
 											</div>
@@ -560,13 +617,13 @@ $( document ).ready(function() {
 												<p>All the Lorem Ipsum on the Internet tend to repeat
 													chunks as necessary, making this on the Internet generator.</p>
 											</div>
-										</div>
+										</div> -->
 									</div>
 
 								</div>
 							</div>
 
-							<div class="skills mt-80">
+							<!-- <div class="skills mt-80">
 								<div class="sub-head mb-50">
 									<h5>
 										Best <span>Skills</span>
@@ -619,7 +676,7 @@ $( document ).ready(function() {
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 
 						</div>
 					</div>

@@ -2,38 +2,48 @@ package com.vishwa.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBConnection {
 
-	public static void main(String[] args) {
-		DBConnection o=new DBConnection();
-		o.getConnection();
+	private static Connection single_Db_instance = null;
+	public static int dbConnectionObjectCount = 0;
+
+	// private constructor restricted to this class itself
+	private DBConnection() {
+
 	}
-	
-	
-	public void getConnection()
-	{
-		System.out.println("calling db");
-		String sqlSelectAllPersons = "SELECT * FROM visitor";
+
+	// static method to create instance of Singleton class
+	public static Connection getInstance()  {
+		
 		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite?serverTimezone=UTC";
-		 
-		try (Connection conn = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak"); 
-		        PreparedStatement ps = conn.prepareStatement(sqlSelectAllPersons); 
-		        ResultSet rs = ps.executeQuery()) {
-		 
-		        while (rs.next()) {
-		            long id = rs.getLong("idvisitor");
-		            String country = rs.getString("country");
-		           
-		 System.out.println("id "+ id+" country "+country);
-		            // do something with the extracted data...
-		        }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		    // handle the exception
+		if (single_Db_instance == null) {
+
+			try
+
+			{
+				Class.forName("com.mysql.jdbc.Driver");
+				single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
+				dbConnectionObjectCount++;
+				System.out.println("connectin object count::" + dbConnectionObjectCount + " conn  "
+						+ single_Db_instance.toString());
+			} catch (SQLException e) {
+				e.printStackTrace();
+				try {
+					single_Db_instance.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				// handle the exception
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
+		return single_Db_instance;
 	}
+
 }
