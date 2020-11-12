@@ -23,7 +23,6 @@ public class DBConnection {
 		System.out.println("ping called");
 		Connection conn= DBConnection.getInstance();
 		Result result=new Result();
-		System.out.println("calling db");
 		String sqlSelectAllPersons = "SELECT 1 FROM DUAL;";
 		int count=-1;
 		try {
@@ -66,11 +65,13 @@ public class DBConnection {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
 				dbConnectionObjectCount++;
-				System.out.println("connectin object count::" + dbConnectionObjectCount + " conn  "
+				System.out.println("getInstance::connectin object count::" + dbConnectionObjectCount + " conn  "
 						+ single_Db_instance.toString());
 				while(!pingDB() && retryCount<5)
 				{
+					System.out.println("retrying connecting db "+retryCount);
 					single_Db_instance.close();
+					single_Db_instance=null;
 					retryCount++;
 					return getInstance();
 				}
