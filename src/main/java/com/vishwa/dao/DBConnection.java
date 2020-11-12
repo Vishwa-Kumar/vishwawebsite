@@ -70,7 +70,6 @@ public class DBConnection {
 				while(!pingDB() && retryCount<5)
 				{
 					System.out.println("retrying connecting db "+retryCount);
-					single_Db_instance.close();
 					single_Db_instance=null;
 					retryCount++;
 					return getInstance();
