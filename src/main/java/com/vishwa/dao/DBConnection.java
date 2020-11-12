@@ -23,7 +23,7 @@ public class DBConnection {
 			try
 
 			{
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
 				dbConnectionObjectCount++;
 				System.out.println("connectin object count::" + dbConnectionObjectCount + " conn  "
