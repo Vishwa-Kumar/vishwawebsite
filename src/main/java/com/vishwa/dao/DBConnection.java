@@ -2,9 +2,14 @@ package com.vishwa.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.vishwa.model.Result;
+
 public class DBConnection {
+	
 
 	private static Connection single_Db_instance = null;
 	public static int dbConnectionObjectCount = 0;
@@ -13,10 +18,45 @@ public class DBConnection {
 	private DBConnection() {
 
 	}
-
-	// static method to create instance of Singleton class
-	public static Connection getInstance()  {
+	public static boolean  pingDB()
+	{
+		System.out.println("ping called");
+		Connection conn= DBConnection.getInstance();
+		Result result=new Result();
+		System.out.println("calling db");
+		String sqlSelectAllPersons = "SELECT 1 FROM DUAL;";
+		int count=-1;
+		try {
+			System.out.println("conn  "+conn);
+			PreparedStatement ps = conn.prepareStatement(sqlSelectAllPersons); 
+			ResultSet rs = ps.executeQuery();
+			System.out.println("waiting for resultset"+rs);
+					while (rs.next()) 
+					{ 
+						 count = rs.getInt(1); 
+						 System.out.println("count "+count);
+						 if(count!=1)
+						 {
+							 return false;
+						 }
+					}
+		      
+		}
 		
+		catch (SQLException e) {
+			e.printStackTrace();
+			result.setErrorCode(e.getErrorCode());
+        	result.setRes(false);
+        	result.setErrorMsg(e.getLocalizedMessage());;
+			
+		}
+		return true;
+	}
+	
+	// static method to create instance of Singleton class
+	public static Connection getInstance() {
+
+		int retryCount=0;
 		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite?serverTimezone=UTC";
 		if (single_Db_instance == null) {
 
@@ -28,15 +68,14 @@ public class DBConnection {
 				dbConnectionObjectCount++;
 				System.out.println("connectin object count::" + dbConnectionObjectCount + " conn  "
 						+ single_Db_instance.toString());
+				while(!pingDB() && retryCount<5)
+				{
+					single_Db_instance.close();
+					retryCount++;
+					return getInstance();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-				try {
-					single_Db_instance.close();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				// handle the exception
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
