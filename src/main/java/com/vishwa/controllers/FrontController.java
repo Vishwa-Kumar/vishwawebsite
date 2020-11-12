@@ -40,11 +40,11 @@ public class FrontController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		System.out.println("send mail called " + clientDetails.toString());
 		try {
-			emailService.sendMail("viskumdee@gmail.com", "visitor of vishwakumardeepak.com",
-					Obj.writeValueAsString(clientDetails));
 
 			res = visitorService.saveVisitorDetails(clientDetails);
 			json = objectMapper.writeValueAsString(res);
+			emailService.sendMail("viskumdee@gmail.com", "visitor of vishwakumardeepak.com",
+					Obj.writeValueAsString(clientDetails));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			System.out.println("not able to save visitor details to db" + e.getLocalizedMessage());
