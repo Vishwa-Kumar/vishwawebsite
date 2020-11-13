@@ -67,13 +67,7 @@ public class DBConnection {
 				dbConnectionObjectCount++;
 				System.out.println("getInstance::connectin object count::" + dbConnectionObjectCount + " conn  "
 						+ single_Db_instance.toString());
-				while(!pingDB() && retryCount<5)
-				{
-					System.out.println("retrying connecting db "+retryCount);
-					single_Db_instance=null;
-					retryCount++;
-					return getInstance();
-				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -81,6 +75,13 @@ public class DBConnection {
 				e.printStackTrace();
 			}
 
+		}
+		while(!pingDB() && retryCount<5)
+		{
+			System.out.println("retrying connecting db "+retryCount);
+			single_Db_instance=null;
+			retryCount++;
+			return getInstance();
 		}
 		return single_Db_instance;
 	}
