@@ -18,7 +18,7 @@ public class DBConnection {
 	private DBConnection() {
 
 	}
-	public static boolean  pingDB()
+	public  boolean  pingDB()
 	{
 		System.out.println("ping called");
 		Connection conn= DBConnection.getInstance();
@@ -55,7 +55,7 @@ public class DBConnection {
 	// static method to create instance of Singleton class
 	public static Connection getInstance() {
 
-		int retryCount=0;
+	
 		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite?serverTimezone=UTC";
 		if (single_Db_instance == null) {
 
@@ -76,13 +76,7 @@ public class DBConnection {
 			}
 
 		}
-		while(!pingDB() && retryCount<5)
-		{
-			System.out.println("retrying connecting db "+retryCount);
-			single_Db_instance=null;
-			retryCount++;
-			return getInstance();
-		}
+		
 		return single_Db_instance;
 	}
 
