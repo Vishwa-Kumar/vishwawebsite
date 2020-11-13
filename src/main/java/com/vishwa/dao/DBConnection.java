@@ -33,7 +33,7 @@ public class DBConnection {
 					while (rs.next()) 
 					{ 
 						 count = rs.getInt(1); 
-						 System.out.println("count "+count);
+						 System.out.println("ping status "+count);
 						 if(count!=1)
 						 {
 							 return false;
