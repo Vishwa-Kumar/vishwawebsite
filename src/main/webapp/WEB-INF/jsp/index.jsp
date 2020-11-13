@@ -61,8 +61,8 @@
 					$
 							.ajax({
 								type : "POST",
-							    url: "http://vishwakumardeepak.com/sendmail", 
-								/* url : "http://localhost:8080/sendmail", */
+							  url: "http://vishwakumardeepak.com/sendmail", 
+								/*  url : "http://localhost:8080/sendmail",  */
 								contentType : "application/json",
 								data : JSON.stringify(input),
 								dataType : 'json',
@@ -79,7 +79,7 @@
 									}, 3000);
 								},
 								error : function(data_response) {
-									alert("error data_response"
+									console.log("error data_response"
 											+ JSON.stringify(data_response))
 									/*  $( "#loader").hide();
 									 $( "#error").slideDown( "slow" ); */
