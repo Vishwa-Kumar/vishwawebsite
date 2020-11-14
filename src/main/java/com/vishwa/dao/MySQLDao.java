@@ -77,7 +77,6 @@ public class MySQLDao {
 		        }
 		        System.out.println("rs "+rs);
 		        
-		        conn.commit();
 		        conn.close();
 		        conn=null;
 		      
