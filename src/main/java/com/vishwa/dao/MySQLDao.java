@@ -50,7 +50,7 @@ public class MySQLDao {
 		Result result=new Result();
 		String sqlSelectAllPersons = "INSERT INTO `vishwaWebsite`.`visitor`  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?);";
 		try {
-			conn.setAutoCommit(false);
+			
 			PreparedStatement ps = conn.prepareStatement(sqlSelectAllPersons); 
 			ps.setInt(1, visitorId);
 			ps.setString(2, visitor.getIp());
@@ -77,6 +77,7 @@ public class MySQLDao {
 		        }
 		        System.out.println("rs "+rs);
 		        
+		        conn.commit();
 		        conn.close();
 		        conn=null;
 		      
