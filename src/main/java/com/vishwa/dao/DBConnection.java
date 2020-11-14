@@ -57,7 +57,7 @@ public class DBConnection {
 	public static Connection getInstance() {
 		DBConnection dBConnection=new DBConnection();
 	
-		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite?serverTimezone=UTC";
+		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite";
 		if (single_Db_instance == null) {
 
 			try
