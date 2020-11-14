@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.cj.PingTarget;
 import com.vishwa.model.Result;
 
 public class DBConnection {
@@ -54,7 +55,7 @@ public class DBConnection {
 	
 	// static method to create instance of Singleton class
 	public static Connection getInstance() {
-
+		DBConnection dBConnection=new DBConnection();
 	
 		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite?serverTimezone=UTC";
 		if (single_Db_instance == null) {
@@ -77,7 +78,22 @@ public class DBConnection {
 
 		}
 		
+		if(dBConnection.pingDB()==true)
+		{
+			return single_Db_instance;
+		}
+		else {
+			try {
+				single_Db_instance.close();
+				single_Db_instance=null;
+				return  DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
 		return single_Db_instance;
+		
 	}
 
 }
