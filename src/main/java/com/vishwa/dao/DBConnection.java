@@ -78,20 +78,14 @@ public class DBConnection {
 
 		}
 		
-		if(dBConnection.pingDB()==true)
-		{
-			return single_Db_instance;
-		}
-		else {
-			try {
-				single_Db_instance.close();
-				single_Db_instance=null;
-				return  DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
+		/*
+		 * if(dBConnection.pingDB()==true) { return single_Db_instance; } else { try {
+		 * single_Db_instance.close(); single_Db_instance=null; return
+		 * DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak"); }
+		 * catch (SQLException e) { e.printStackTrace(); }
+		 * 
+		 * }
+		 */
 		return single_Db_instance;
 		
 	}
