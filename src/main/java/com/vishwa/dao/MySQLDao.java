@@ -46,9 +46,11 @@ public class MySQLDao {
 	public Result SaveVisitor(ClientDetails visitor,int visitorId)
 	{
 		Connection conn= DBConnection.getInstance();
+		
 		Result result=new Result();
 		String sqlSelectAllPersons = "INSERT INTO `vishwaWebsite`.`visitor`  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?);";
 		try {
+			conn.setAutoCommit(false);
 			System.out.println("conn  "+conn);
 			PreparedStatement ps = conn.prepareStatement(sqlSelectAllPersons); 
 			ps.setInt(1, visitorId);
@@ -75,6 +77,8 @@ public class MySQLDao {
 		        	result.setErrorMsg("success");;
 		        }
 		        System.out.println("rs "+rs);
+		        conn.close();
+		        conn=null;
 		      
 		}
 		
@@ -85,6 +89,7 @@ public class MySQLDao {
         	result.setErrorMsg(e.getLocalizedMessage());;
 			
 		}
+		
 		return result;
 	}
 	
