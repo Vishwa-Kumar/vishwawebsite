@@ -50,9 +50,9 @@ public class DBConnection {
 		}
 		return true;
 	}
-	public  boolean closeDBConnection()
-	{
-		
+
+	public boolean closeDBConnection() {
+
 		try {
 			single_Db_instance.isValid(3);
 		} catch (SQLException e) {
@@ -60,7 +60,7 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 		return false;
-		
+
 	}
 
 	// static method to create instance of Singleton class
@@ -71,11 +71,9 @@ public class DBConnection {
 		try
 
 		{
-			
-			
-			if (single_Db_instance == null ) {
-				
-				
+
+			if (single_Db_instance == null) {
+
 				{
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
@@ -84,24 +82,17 @@ public class DBConnection {
 							+ single_Db_instance.toString());
 				}
 
-				
-
-			}
-			else
-			{
-				if(single_Db_instance.isValid(5))
-				{
+			} else {
+				if (single_Db_instance.isValid(5)) {
 					return single_Db_instance;
-				}
-				else
-				{
+				} else {
 					single_Db_instance.close();
-					single_Db_instance=null;
+					single_Db_instance = null;
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
 					dbConnectionObjectCount++;
-					System.out.println("getInstance::connectin object count isvalid section::" + dbConnectionObjectCount + " conn  "
-							+ single_Db_instance.toString());
+					System.out.println("getInstance::connectin object count isvalid section::" + dbConnectionObjectCount
+							+ " conn  " + single_Db_instance.toString());
 				}
 			}
 		} catch (SQLException e) {
@@ -111,14 +102,6 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 
-		/*
-		 * if(dBConnection.pingDB()==true) { return single_Db_instance; } else { try {
-		 * single_Db_instance.close(); single_Db_instance=null; return
-		 * DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak"); }
-		 * catch (SQLException e) { e.printStackTrace(); }
-		 * 
-		 * }
-		 */
 		return single_Db_instance;
 
 	}
