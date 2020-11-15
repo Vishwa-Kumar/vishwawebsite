@@ -62,7 +62,7 @@
 					$
 							.ajax({
 								type : "POST",
-							  url: "https://vishwakumardeepak.com/sendmail",
+							  url: "http://www.vishwakumardeepak.com/sendmail",
 						 /* 	 url : "http://localhost:8080/sendmail",   */
 								contentType : "application/json",
 								data : JSON.stringify(input),
