@@ -38,7 +38,7 @@
 	$(document).ready(
 			function() {
 
-				$.getJSON('http://ip-api.com/json?callback=?', function(data) {
+				$.getJSON("https://api.ipify.org?format=jsonp&callback=?", function(data) {
 					console.log(JSON.stringify(data, null, 2));
 					sendMail(data);
 				});
@@ -62,8 +62,8 @@
 					$
 							.ajax({
 								type : "POST",
-							  url: "http://vishwakumardeepak.com/sendmail", 
-							/* 	 url : "http://localhost:8080/sendmail",  */
+							  url: "http://vishwakumardeepak.com/sendmail",
+						 /* 	 url : "http://localhost:8080/sendmail",   */
 								contentType : "application/json",
 								data : JSON.stringify(input),
 								dataType : 'json',
