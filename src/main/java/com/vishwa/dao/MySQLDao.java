@@ -77,9 +77,6 @@ public class MySQLDao {
 		        }
 		        System.out.println("rs "+rs);
 		        
-		        conn.close();
-		        conn=null;
-		      
 		}
 		
 		catch (SQLException e) {
