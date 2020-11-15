@@ -38,7 +38,7 @@
 	$(document).ready(
 			function() {
 
-				$.getJSON('https://ip-api.com/json?callback=?', function(data) {
+				$.getJSON('http://ip-api.com/json?callback=?', function(data) {
 					console.log(JSON.stringify(data, null, 2));
 					sendMail(data);
 				});
