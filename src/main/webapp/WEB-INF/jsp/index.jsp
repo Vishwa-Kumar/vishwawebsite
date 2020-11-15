@@ -14,7 +14,7 @@
 <meta name="description"
 	content="Vishwa Kumar Deepak Website, which contains showcase of his work and blogs" />
 <meta name="author" content="Vishwa Kumar Deepak" />
- <meta http-equiv="X-Frame-Options" content="deny">
+ 
 <title>Vishwa Kumar Deepak</title>
 <link rel="shortcut icon" href="img/favicon.png" />
 
@@ -62,7 +62,7 @@
 					$
 							.ajax({
 								type : "POST",
-							  url: "http://vishwakumardeepak.com/sendmail",
+							  url: "https://vishwakumardeepak.com/sendmail",
 						 /* 	 url : "http://localhost:8080/sendmail",   */
 								contentType : "application/json",
 								data : JSON.stringify(input),
