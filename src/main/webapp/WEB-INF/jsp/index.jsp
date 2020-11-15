@@ -13,7 +13,8 @@
 <meta name="keywords" content="Vishwa Kumar Deepak" />
 <meta name="description"
 	content="Vishwa Kumar Deepak Website, which contains showcase of his work and blogs" />
-<meta name="author" content="Vishwa" />
+<meta name="author" content="Vishwa Kumar Deepak" />
+ <meta http-equiv="X-Frame-Options" content="deny">
 <title>Vishwa Kumar Deepak</title>
 <link rel="shortcut icon" href="img/favicon.png" />
 
@@ -37,7 +38,7 @@
 	$(document).ready(
 			function() {
 
-				$.getJSON('http://ip-api.com/json?callback=?', function(data) {
+				$.getJSON('https://ip-api.com/json?callback=?', function(data) {
 					console.log(JSON.stringify(data, null, 2));
 					sendMail(data);
 				});
@@ -62,7 +63,7 @@
 							.ajax({
 								type : "POST",
 							  url: "http://vishwakumardeepak.com/sendmail", 
-								/*  url : "http://localhost:8080/sendmail",  */
+							/* 	 url : "http://localhost:8080/sendmail",  */
 								contentType : "application/json",
 								data : JSON.stringify(input),
 								dataType : 'json',
