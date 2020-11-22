@@ -6,6 +6,7 @@
 <head>
 
 <!-- Metas -->
+<meta name="fragment" content="!">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -14,6 +15,12 @@
 <meta name="description"
 	content="Vishwa Kumar Deepak Website, which contains showcase of his work and blogs" />
 <meta name="author" content="Vishwa Kumar Deepak" />
+
+<meta property="og:title" content="Vishwa Kumar Deepak" />
+<meta property="og:type" content="blog:author" />
+<meta property="og:image:height" content="1000" />
+<meta property="og:url" content="www.vishwakumardeepak.com" />
+<meta property="og:image" content="https://www.vishwakumardeepak.com/img/hero.jpg" />
  
 <title>Vishwa Kumar Deepak</title>
 <link rel="shortcut icon" href="img/favicon.png" />
