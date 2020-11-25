@@ -44,42 +44,43 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
+				var ip;
+				$.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+						function(data) {
+							console.log(JSON.stringify(data, null, 2));
 
-				/* $.getJSON("https://api.ipify.org?format=jsonp&callback=?", function(data) {
-					console.log(JSON.stringify(data, null, 2));
-					sendMail(data);
-				}); */
-				
-				$.ajax({
-					url : "https://freegeoip.app/json/"+ip,
-					success : function(dataFull) {
-						//alert(JSON.stringify(dataFull, null, 2));
-						console.log(JSON.stringify(dataFull, null, 2));
+							ip = data.ip;
+							$.ajax({
+								url : "https://freegeoip.app/json/"+ip,
+								success : function(dataFull) {
+									//alert(JSON.stringify(dataFull, null, 2));
+									console.log(JSON.stringify(dataFull, null, 2));
 
-						details["country"] = dataFull.country_name;
-						details["countryCode"] = dataFull.country_code;
-						details["regionName"] = dataFull.region_name;
-						details["timezone"] = dataFull.time_zone;
-						details["region"] = dataFull.region_code;
-						details["zip"] = dataFull.zip_code;
-						details["city"] = dataFull.city;
-						details["lat"] = dataFull.latitude;
-						details["lon"] = dataFull.longitude;
-						details["query"] = dataFull.ip;
-						console.log(JSON.stringify(details, null, 2));
-						sendMail(details);
-					},
-					error : function(dataFull) {
-						console.log(JSON.stringify(dataFull, null, 2));
+									details["country"] = dataFull.country_name;
+									details["countryCode"] = dataFull.country_code;
+									details["regionName"] = dataFull.region_name;
+									details["timezone"] = dataFull.time_zone;
+									details["region"] = dataFull.region_code;
+									details["zip"] = dataFull.zip_code;
+									details["city"] = dataFull.city;
+									details["lat"] = dataFull.latitude;
+									details["lon"] = dataFull.longitude;
+									details["query"] = dataFull.ip;
+									console.log(JSON.stringify(details, null, 2));
+									sendMail(details);
+								},
+								error : function(dataFull) {
+									console.log(JSON.stringify(dataFull, null, 2));
 
-						details["country"] = "NA";
-						details["region"] = "NA";
-						details["zip"] = "NA";
-						details["city"] = "NA";
-						console.log(JSON.stringify(details, null, 2));
-						sendMail(details);
-					}
-				});
+									details["country"] = "NA";
+									details["region"] = "NA";
+									details["zip"] = "NA";
+									details["city"] = "NA";
+									console.log(JSON.stringify(details, null, 2));
+									sendMail(details);
+								}
+							});
+						});
 				
 				console.log("ready!");
 				var day = new Date();
