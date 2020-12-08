@@ -209,7 +209,7 @@
 								<p class="wish"></p>
 								<h1>I'm Vishwa</h1>
 								<p>I am Vishwa Kumar Deepak. Graduated in Computer Science
-									Engineering from KIIT University Bhubaneswar. Six Year plus
+									Engineering from KIIT University, Bhubaneswar. Six Year plus
 									industry experience in software industry. Presently working
 									with Microsoft Hyderabad. Always eager and curious about
 									technology around.</p>
@@ -350,7 +350,7 @@
 										<div class="item">
 											<span class="icon ti-shield"></span>
 											<div class="cont">
-												<h6>Trave & Food</h6>
+												<h6>Travel & Food</h6>
 												<p>
 													When I am not working, I might be travelling or thinking
 													about travelling or Food.<br> My <a
