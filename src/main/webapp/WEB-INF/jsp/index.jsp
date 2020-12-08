@@ -134,7 +134,17 @@
 
 			});
 </script>
-
+<style>
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    border-bottom: 1px solid #2A2A2E;
+    background: #1e243a;
+    font-size: 13px;
+    color: white;
+}
+</style>
 </head>
 
 <body>
@@ -263,7 +273,7 @@
 
 							<div class="text-center">
 								<h5 class="intro">
-									I am a <b>software engineer</b> from India, Hyderabad.
+									I am a <b>software engineer</b> from Hyderabad, India.
 								</h5>
 								<p class="mb-15">Proficient in the data structure,
 									algorithms, design patterns, and other computer science
