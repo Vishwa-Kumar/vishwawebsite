@@ -14,12 +14,13 @@
 	<version>0</version>
 	<packaging>war</packaging>
 	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Vishwa Portfolio </description>
 
 
 	<properties>
 		<java.version>1.8</java.version>
 		<start-class>mypackage.App</start-class>
+		 <jstl.version>1.2</jstl.version>
 	</properties>
 
 	<dependencies>
@@ -36,6 +37,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		
+        <dependency>
+		     <groupId>jstl</groupId>
+		     <artifactId>jstl</artifactId>
+		     <version>1.2</version>
+		     <scope>provided</scope>
+ 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -61,6 +69,11 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.22</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>9.2.1.jre11</version>
 		</dependency>
 	</dependencies>
 

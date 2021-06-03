@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.PingTarget;
 import com.vishwa.model.Result;
 
 public class DBConnection {
@@ -67,7 +66,9 @@ public class DBConnection {
 	public static Connection getInstance() {
 		DBConnection dBConnection = new DBConnection();
 
-		String connectionUrl = "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite";
+		// String connectionUrl =
+		// "jdbc:mysql://vishwawebsitedb.ci2imxqem4ip.us-east-2.rds.amazonaws.com:3306/vishwaWebsite";
+		String connectionUrl = "jdbc:mysql://localhost:3306/vishwablog";
 		try
 
 		{
@@ -76,7 +77,7 @@ public class DBConnection {
 
 				{
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
+					single_Db_instance = DriverManager.getConnection(connectionUrl, "root", "root");
 					dbConnectionObjectCount++;
 					System.out.println("getInstance::connectin object count::" + dbConnectionObjectCount + " conn  "
 							+ single_Db_instance.toString());
@@ -89,7 +90,7 @@ public class DBConnection {
 					single_Db_instance.close();
 					single_Db_instance = null;
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					single_Db_instance = DriverManager.getConnection(connectionUrl, "vishwa", "vishwakumardeepak");
+					single_Db_instance = DriverManager.getConnection(connectionUrl, "root", "root");
 					dbConnectionObjectCount++;
 					System.out.println("getInstance::connectin object count isvalid section::" + dbConnectionObjectCount
 							+ " conn  " + single_Db_instance.toString());
